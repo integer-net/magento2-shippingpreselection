@@ -1,0 +1,75 @@
+<?php
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+use IntegerNet\ShippingPreselection\ViewModel\AllowedCountries;
+use IntegerNet\ShippingPreselection\ViewModel\ShippingAddressMutation;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var GraphQlQueries $viewModelCart */
+/** @var Store $viewModelStore */
+/** @var AllowedCountries $allowedCountries */
+/** @var ShippingAddressMutation $addressMutation */
+
+$store = $viewModels->require(Store::class);
+$addressMutation = $viewModels->require(ShippingAddressMutation::class);
+$allowedCountries = $viewModels->require(AllowedCountries::class);
+
+$countriesJson = $allowedCountries->getAllowedCountriesJson();
+?>
+
+<?php if (false) :  // this is just for better legibility of the script part ?>
+    <script> const script = {
+            <?php endif; ?>
+            selectedShippingCountry: null,
+            allowedCountries: <?= /** @noEscape */ $countriesJson ?>,
+            mutateShippingCountry(countryCode) {
+                if (this.selectedShippingCountry !== countryCode && (this.allowedCountries && this.allowedCountries[countryCode])) {
+
+                    const addressDataFromCart = this.cartData && this.cartData.shipping_addresses && this.cartData.shipping_addresses[0]
+                    const addressMutationQuery = `mutation {<?= /** @noEscape */ $addressMutation->getMutateAddressQuery() ?>}`;
+
+                    fetch('<?= $escaper->escapeUrl($block->getBaseUrl()) ?>graphql', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8',
+                                'Store': '<?= /* @noEscape */ $store->getStoreCode() ?>'
+                            },
+                            body: JSON.stringify({query: addressMutationQuery})
+                        }
+                    ).then((response) => {
+                            return response.json()
+                        }
+                    ).then((data) => {
+                        this.clearErrorMessages();
+                        if (data && data.errors) {
+                            this.initErrorMessages(data.errors);
+                            this.getCart();
+                            this.updateCartDataDependencies();
+                        } else {
+                            this.cartData = (
+                                data &&
+                                data.data && data.data.setShippingAddressesOnCart && data.data.setShippingAddressesOnCart.cart
+                            ) || [];
+                            this.updateCartDataDependencies();
+                        }
+                        this.reloadCustomerData();
+                    }).catch(error => {
+                        console.error(error);
+                        typeof window.dispatchMessages !== "undefined" && window.dispatchMessages(
+                            [{
+                                type: "error",
+                                text: "<?= $escaper->escapeJs(__("Something went wrong. Please try again.")) ?>"
+                            }], 10000
+                        );
+                    })
+                }
+            },
+            <?php if(false) :  // this is just for better legibility of the script part ?>
+        }</script>
+<?php endif; ?>

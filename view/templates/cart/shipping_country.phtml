@@ -1,0 +1,30 @@
+<?php
+
+// phpcs:disable Generic.WhiteSpace.ScopeIndent.Incorrect
+// phpcs:disable PSR2.Methods.FunctionCallSignature.Indent
+
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+?>
+<template x-if="allowedCountries">
+    <div>
+        <label for="cart-shipping-country" class="text-xsm my-2 block"><?= $escaper->escapeHtml(
+                __('Enter your destination to get a shipping estimate.')
+            ) ?></label>
+        <select name="shipping_country"
+                id="cart-shipping-country"
+                class="form-select super-attribute-select"
+                x-on:change="mutateShippingCountry(event.target.value)">
+           <template x-for="countryCode in Object.keys(allowedCountries)" :key="countryCode">
+                <option
+                    :value="countryCode"
+                    x-html="allowedCountries[countryCode]"
+                    :selected="selectedShippingCountry === countryCode">
+                </option>
+            </template>
+        </select>
+    </div>
+</template>

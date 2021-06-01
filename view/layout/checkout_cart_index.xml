@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cart_dynamic">
+            <block name="shipping_country" template="IntegerNet_ShippingPreselection::cart/shipping_country.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="cart_main_js">
+            <block name="shipping_country_js" template="IntegerNet_ShippingPreselection::cart/shipping_country/js.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

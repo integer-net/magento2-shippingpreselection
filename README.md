@@ -10,22 +10,15 @@
 [![Maintainability][ico-maintainability]][link-maintainability]
 </div>
 
----
-
-This module provides methods to preselect a shipping method upon quote creation of the customer. It fetches all available countries from Magento Config and will preselect the default country/region/postcode of the current storeview.
-
-=======
 # IntegerNet ShippingPreselection (AutoShipping) 
 
 This module provides methods to preselect a shipping method upon quote creation of the customer. It fetches all available countries from Magento Config and will preselect the default country/region/postcode of the current storeview.
 
 **Important:** This is WIP as of yet - shipping address mock data still needs to be cleared when entering checkout.
->>>>>>> 991c673 (initial commit)
 
 
 ## Installation
 
-<<<<<<< HEAD
 1. Install it into your Magento 2 project with composer:
     ```
     composer require integer-net/magento2-shippingpreselection
@@ -39,20 +32,27 @@ This module provides methods to preselect a shipping method upon quote creation 
 
 ## Configuration
 
-1. Add selectedShippingCountry setting + shipping country script to Mage_Checkout::cart/js/cart.phtml
-   
-
-    updateCartDataDependencies() {
-        [...]
-        this.selectedShippingCountry = this.cartData && this.cartData.shipping_addresses && this.cartData.shipping_addresses[0] && this.cartData.shipping_addresses[0].country && this.cartData.shipping_addresses[0].country.code || null
-    },
-    <?= $block->getChildHtml('shipping_country_js') ?>
-
-
-2. Set config value for the mock data `integernet/shipping_preselection/mock_data` to custom value if desired 
-
-
-3. If you have an altered cart query for GraphQl, you need to alter the ShippingAddressMutation class accordingly to use it.
+ 1) Add selectedShippingCountry select to `Mage_Checkout::cart.phtml`
+ 
+ 
+ ```
+     <?= $block->getChildHtml('shipping_country') ?>
+ 
+ ```
+ 2. Add shipping country script to `Mage_Checkout::cart/js/cart.phtml`
+ 
+ ```
+     updateCartDataDependencies() {
+         [...]
+         this.selectedShippingCountry = this.cartData && this.cartData.shipping_addresses && this.cartData.shipping_addresses[0] && this.cartData.shipping_addresses[0].country && this.cartData.shipping_addresses[0].country.code || null
+     },
+     <?= $block->getChildHtml('shipping_country_js') ?>
+ ```
+ 
+ 
+ 3) Set config value for the mock data `integernet/shipping_preselection/mock_data` to custom value if desired 
+ 
+ 4) If you have an altered cart query for GraphQl, you need to override `IntegerNet\ShippingPreselection\ViewModel\ShippingAddressMutation` accordingly.
 
 ## Usage
 
@@ -83,10 +83,9 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
     ../../../vendor/bin/phpunit
     ```
 
-
 ## Security
 
-If you discover any security related issues, please email lb@integer-net.de instead of using the issue tracker.
+If you discover any security related issues, please email security@integer-net.de instead of using the issue tracker.
 
 ## Credits
 

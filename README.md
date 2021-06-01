@@ -32,27 +32,32 @@ This module provides methods to preselect a shipping method upon quote creation 
 
 ## Configuration
 
- 1) Add selectedShippingCountry select to `Mage_Checkout::cart.phtml`
+In general, make sure your configuration settings meet requirements: 
+- postcode, region and country set in General > Store Information
+- all available countries need to have at least one shipping method available
+- available countries cannot have mandatory region setting
+
+1) Add selectedShippingCountry select to `Mage_Checkout::cart.phtml`
  
  
- ```
+```
      <?= $block->getChildHtml('shipping_country') ?>
  
- ```
- 2. Add shipping country script to `Mage_Checkout::cart/js/cart.phtml`
+```
+2. Add shipping country script to `Mage_Checkout::cart/js/cart.phtml`
  
- ```
+```
      updateCartDataDependencies() {
          [...]
          this.selectedShippingCountry = this.cartData && this.cartData.shipping_addresses && this.cartData.shipping_addresses[0] && this.cartData.shipping_addresses[0].country && this.cartData.shipping_addresses[0].country.code || null
      },
      <?= $block->getChildHtml('shipping_country_js') ?>
- ```
+```
  
+
+3) Set config value for the mock data `integernet/shipping_preselection/mock_data` to custom value if desired 
  
- 3) Set config value for the mock data `integernet/shipping_preselection/mock_data` to custom value if desired 
- 
- 4) If you have an altered cart query for GraphQl, you need to override `IntegerNet\ShippingPreselection\ViewModel\ShippingAddressMutation` accordingly.
+4) If you have an altered cart query for GraphQl, you need to override `IntegerNet\ShippingPreselection\ViewModel\ShippingAddressMutation` accordingly.
 
 ## Usage
 

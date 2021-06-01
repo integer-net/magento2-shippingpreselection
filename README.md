@@ -33,6 +33,7 @@ This module provides methods to preselect a shipping method upon quote creation 
 ## Configuration
 
 In general, make sure your configuration settings meet requirements: 
+
 - postcode, region and country set in General > Store Information
 - all available countries need to have at least one shipping method available
 - available countries cannot have mandatory region setting

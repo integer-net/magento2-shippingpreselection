@@ -78,8 +78,8 @@ class PreselectShippingMethod
             );
             $address->setCity($address->getCity() ?: $prefill);
             $address->setTelephone($address->getTelephone() ?: $prefill);
-            $address->setRegion(
-                $address->getRegion() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store')
+            $address->setRegionId(
+                $address->getRegionId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store')
             );
             $address->setCountryId(
                 $address->getData('country_id')
@@ -91,7 +91,7 @@ class PreselectShippingMethod
             $address->setStreet(
                 (is_array($address->getStreet()) && count($address->getStreet()) && $address->getStreet()[0] !== '')
                 || is_string($address->getStreet()) && strlen($address->getStreet()) ? $address->getStreet()
-                    : [$prefill]
+                    : [$prefill . ' 1']
             );
         }
 

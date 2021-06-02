@@ -1,12 +1,15 @@
 {
-    "name": ":vendor/:package",
-    "description": ":description",
+    "name": "integer-net/magento2-shippingpreselection
+",
+    "description": "This module provides methods to preselect a shipping method upon quote creation of the customer. It fetches all available countries from Magento Config and will preselect the default country/region/postcode of the current storeview.
+
+",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author-name",
-            "email": ":author-email"
+            "name": "Lisa Buchholz",
+            "email": "lb@integer-net.de"
         }
     ],
     "minimum-stability": "stable",
@@ -15,12 +18,12 @@
             "registration.php"
         ],
         "psr-4": {
-            ":module-namespace\\:module-name\\": "src"
+            "IntegerNet\\ShippingPreselection\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":module-namespace\\:module-name\\": "tests/src"
+            "IntegerNet\\ShippingPreselection\\": "tests/src"
         }
     },
     "repositories": [
@@ -30,8 +33,8 @@
         }
     ],
     "require": {
-        "php": ":php-constraint",
-        "magento/framework": ":framework-constraint"
+        "php": "~7.3||~7.4",
+        "magento/framework": "^103.0.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",

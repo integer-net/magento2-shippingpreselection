@@ -1,6 +1,6 @@
 <?php
 
-namespace :module-namespace\:module-name;
+namespace IntegerNet\ShippingPreselection;
 
 use PHPUnit\Framework\TestCase;
 

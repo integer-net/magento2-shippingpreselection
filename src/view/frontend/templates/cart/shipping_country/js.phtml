@@ -24,7 +24,7 @@ $allowedCountries = $viewModels->require(AllowedCountries::class);
 $countriesJson = $allowedCountries->getAllowedCountriesJson();
 ?>
 
-<?php if (false) :  // this is just for better legibility of the script part ?>
+<?php if (false):  // this is just for better legibility of the script part ?>
     <script> const script = {
             <?php endif; ?>
             selectedShippingCountry: null,
@@ -71,6 +71,6 @@ $countriesJson = $allowedCountries->getAllowedCountriesJson();
                     })
                 }
             },
-            <?php if(false) :  // this is just for better legibility of the script part ?>
+            <?php if (false):  // this is just for better legibility of the script part ?>
         }</script>
 <?php endif; ?>

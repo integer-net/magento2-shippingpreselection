@@ -4,5 +4,7 @@
         <type name="Magento\Checkout\Model\Session">
             <plugin name="integernet_shippingpreselection_preselectshippingmethod"
                     type="IntegerNet\ShippingPreselection\Plugin\PreselectShippingMethod" sortOrder="20"/>
+            <plugin name="integernet_shippingpreselection_resetshippingaddress"
+                    type="IntegerNet\ShippingPreselection\Plugin\ResetShippingAddress" sortOrder="30"/>
         </type>
 </config>

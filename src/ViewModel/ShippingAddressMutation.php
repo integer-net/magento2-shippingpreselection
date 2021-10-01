@@ -29,7 +29,7 @@ class ShippingAddressMutation implements ArgumentInterface
                                     lastname: "${addressDataFromCart.lastname}"
                                     street: "${addressDataFromCart.street}"
                                     city: "${addressDataFromCart.city}"
-                                    region: "${addressDataFromCart.region}"
+                                    region: "${addressDataFromCart.region.code}"
                                     country_code: "${countryCode}"
                                     telephone: "${addressDataFromCart.telephone}"
                                     postcode: "${addressDataFromCart.postcode}"

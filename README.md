@@ -2,11 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
 ![Supported Magento Versions][ico-compatibility]
 
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Maintainability][ico-maintainability]][link-maintainability]
 </div>
 
@@ -113,13 +110,10 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/integer-net/magento2-shippingpreselection.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/integer-net/magento2-shippingpreselection.svg?style=flat-square
 [ico-maintainability]: https://img.shields.io/codeclimate/maintainability/integer-net/magento2-shippingpreselection?style=flat-square
 [ico-compatibility]: https://img.shields.io/badge/magento-2.4-brightgreen.svg?logo=magento&longCache=true&style=flat-square
 
 [link-packagist]: https://packagist.org/packages/integer-net/magento2-shippingpreselection
-[link-scrutinizer]: https://scrutinizer-ci.com/g/integer-net/magento2-shippingpreselection/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/integer-net/magento2-shippingpreselection
 [link-maintainability]: https://codeclimate.com/github/integer-net/magento2-shippingpreselection
 [link-author]: https://github.com/integer_net
 [link-contributors]: ../../contributors
@@ -128,16 +122,10 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/integer-net/magento2-shippingpreselection.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/integer-net/magento2-shippingpreselection/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/integer-net/magento2-shippingpreselection?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/integer-net/magento2-shippingpreselection.svg?style=flat-square
 [ico-maintainability]: https://img.shields.io/codeclimate/maintainability/integer-net/magento2-shippingpreselection?style=flat-square
 [ico-compatibility]: https://img.shields.io/badge/magento-2.4-brightgreen.svg?logo=magento&longCache=true&style=flat-square
 
 [link-packagist]: https://packagist.org/packages/integer-net/magento2-shippingpreselection
-[link-travis]: https://travis-ci.org/integer-net/magento2-shippingpreselection
-[link-scrutinizer]: https://scrutinizer-ci.com/g/integer-net/magento2-shippingpreselection/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/integer-net/magento2-shippingpreselection
 [link-maintainability]: https://codeclimate.com/github/integer-net/magento2-shippingpreselection
 [link-author]: https://github.com/lbuchholz
 [link-contributors]: ../../contributors

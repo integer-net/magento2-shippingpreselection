@@ -1,0 +1,14 @@
+name: ExtDN Actions
+on: [push]
+jobs:
+  unit-tests:
+    name: Magento 2 Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://yireo/github-actions-magento-unit-tests:7.4
+        env:
+          MAGENTO_VERSION: '2.4.3'
+          MODULE_NAME: IntegerNet/ShippingPreselection
+          COMPOSER_NAME: integer-net/magento2-shippingpreselection
+

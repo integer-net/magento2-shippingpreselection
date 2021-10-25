@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace IntegerNet\ShippingPreselection\Service;
 
-use Magento\Customer\Api\Data\AddressInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Quote\Model\Quote\Address;
+use Magento\Quote\Api\Data\AddressInterface;
 
 class AddressSetMockdata
 {
@@ -23,9 +22,9 @@ class AddressSetMockdata
         $this->storeConfig = $storeConfig;
     }
 
-    public function setMockDataOnAddress(Address $address): void
+    public function setMockDataOnAddress(AddressInterface $address): void
     {
-        $prefill = $this->storeConfig->getValue(self::CONFIG_PATH_MOCK_DATASET, 'store');
+        $prefill = (string) $this->storeConfig->getValue(self::CONFIG_PATH_MOCK_DATASET, 'store');
 
         $address->setFirstname($address->getFirstname() ?: $prefill);
         $address->setLastname($address->getLastname() ?: $prefill);
@@ -33,11 +32,14 @@ class AddressSetMockdata
         $address->setCity($address->getCity() ?: $prefill);
         $address->setTelephone($address->getTelephone() ?: $prefill);
         $address->setRegionId($address->getRegionId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store'));
-        $address->setCountryId($address->getData('country_id') ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_COUNTRY_ID, 'store'));
+        $address->setCountryId($address->getCountryId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_COUNTRY_ID, 'store'));
         $address->setStreet($this->mockStreet($address, $prefill));
     }
 
-    private function mockStreet(Address $address, $prefill): array
+    /**
+     * @return array<string>|string
+     */
+    private function mockStreet(AddressInterface $address, string $prefill)
     {
         if (is_array($address->getStreet()) && count($address->getStreet()) && $address->getStreet()[0] !== '') {
             return $address->getStreet();

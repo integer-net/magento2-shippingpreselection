@@ -13,6 +13,6 @@ jobs:
       - uses: docker://yireo/github-actions-magento-unit-tests:7.4
         env:
           MAGENTO_VERSION: '2.4.3'
-          MODULE_NAME: IntegerNet/ShippingPreselection
+          MODULE_NAME: IntegerNet_ShippingPreselection
           COMPOSER_NAME: integer-net/magento2-shippingpreselection
 

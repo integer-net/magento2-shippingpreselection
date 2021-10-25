@@ -34,3 +34,4 @@ jobs:
           module_name: IntegerNet_ShippingPreselection
           composer_name: integer-net/magento2-shippingpreselection
           ce_version: '2.4.3'
+          phpunit_file: vendor/integer-net/magento2-shippingpreselection/.github/workflows/phpunit9-integration.xml

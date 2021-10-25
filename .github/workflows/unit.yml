@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker://yireo/github-actions-magento-unit-tests:7.4
+        with:
+          phpunit_file: vendor/integer-net/magento2-shippingpreselection/.github/workflows/phpunit9-unit.xml
         env:
           MAGENTO_VERSION: '2.4.3'
           MODULE_NAME: IntegerNet_ShippingPreselection
           COMPOSER_NAME: integer-net/magento2-shippingpreselection
-          PHPUNIT_FILE: vendor/integer-net/magento2-shippingpreselection/.github/workflows/phpunit9-unit.xml
 

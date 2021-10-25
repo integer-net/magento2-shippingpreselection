@@ -28,11 +28,11 @@ class AddressSetMockdata
 
         $address->setFirstname($address->getFirstname() ?: $prefill);
         $address->setLastname($address->getLastname() ?: $prefill);
-        $address->setPostcode($address->getPostcode() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_POSTCODE, 'store'));
+        $address->setPostcode($address->getPostcode() ?: $this->getDefaultPostcode());
         $address->setCity($address->getCity() ?: $prefill);
         $address->setTelephone($address->getTelephone() ?: $prefill);
-        $address->setRegionId($address->getRegionId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store'));
-        $address->setCountryId($address->getCountryId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_COUNTRY_ID, 'store'));
+        $address->setRegionId($address->getRegionId() ?: $this->getDefaultRegionId());
+        $address->setCountryId($address->getCountryId() ?: $this->getDefaultCountryId());
         $address->setStreet($this->mockStreet($address, $prefill));
     }
 
@@ -48,5 +48,20 @@ class AddressSetMockdata
             return $address->getStreet();
         }
         return [$prefill];
+    }
+
+    private function getDefaultPostcode(): string
+    {
+        return (string) $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_POSTCODE, 'store');
+    }
+
+    private function getDefaultRegionId(): int
+    {
+        return (int) $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store');
+    }
+
+    private function getDefaultCountryId(): string
+    {
+        return (string) $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_COUNTRY_ID, 'store');
     }
 }

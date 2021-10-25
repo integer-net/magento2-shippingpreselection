@@ -21,13 +21,11 @@ class PreselectShippingMethod
     private AddressResetConditions   $addressResetConditions;
 
     public function __construct(
-        ScopeConfigInterface $storeConfig,
         ShippingMethodManagement $shippingMethodManagement,
         AddressFactory $addressFactory,
         AddressResetConditions $addressResetConditions,
         AddressSetMockdata $addressSetMockdata)
     {
-        $this->storeConfig = $storeConfig;
         $this->shippingMethodManagement = $shippingMethodManagement;
         $this->addressFactory = $addressFactory;
         $this->addressSetMockdata = $addressSetMockdata;

@@ -18,6 +18,8 @@ class AddressSetMockdata
     public const CONFIG_PATH_DEFAULT_POSTCODE   = 'general/store_information/postcode';
     public const CONFIG_PATH_MOCK_DATASET       = 'integernet/shipping_preselection/mock_data';
 
+    private ScopeConfigInterface $storeConfig;
+
     public function __construct(ScopeConfigInterface $storeConfig)
     {
         $this->storeConfig = $storeConfig;

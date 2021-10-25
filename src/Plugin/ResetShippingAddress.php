@@ -13,7 +13,6 @@ class ResetShippingAddress
 
     private AddressUnsetMockdata   $addressUnsetMockdata;
     private AddressResetConditions $addressResetConditions;
-    private                        $resetUrls = null;
 
     public function __construct(
         AddressUnsetMockdata $addressUnsetMockdata,

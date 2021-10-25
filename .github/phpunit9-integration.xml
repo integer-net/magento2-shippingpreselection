@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.1/phpunit.xsd"
          colors="true"
          columns="max"
          beStrictAboutTestsThatDoNotTestAnything="false"
@@ -17,14 +17,16 @@
             <directory suffix="Test.php">../../../vendor/%COMPOSER_NAME%/src/tests/integration</directory>
         </testsuite>
     </testsuites>
-    <coverage>
-        <exclude>
-            <directory>../../../lib/internal/*/*/Test</directory>
-            <directory>../../../lib/internal/*/*/*/Test</directory>
-            <directory>../../../setup/src/*/*/Test</directory>
-            <directory>../../../vendor/*/*/Test</directory>
-        </exclude>
-    </coverage>
+    <filter>
+        <whitelist>
+            <exclude>
+                <directory>../../../lib/internal/*/*/Test</directory>
+                <directory>../../../lib/internal/*/*/*/Test</directory>
+                <directory>../../../setup/src/*/*/Test</directory>
+                <directory>../../../vendor/*/*/Test</directory>
+            </exclude>
+        </whitelist>
+    </filter>
     <php>
         <includePath>.</includePath>
         <includePath>testsuite</includePath>

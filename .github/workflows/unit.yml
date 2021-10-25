@@ -1,4 +1,4 @@
-name: ExtDN Actions
+name: ExtDN M2 Unit Tests
 on: [push]
 jobs:
   unit-tests:
@@ -15,4 +15,5 @@ jobs:
           MAGENTO_VERSION: '2.4.3'
           MODULE_NAME: IntegerNet_ShippingPreselection
           COMPOSER_NAME: integer-net/magento2-shippingpreselection
+          PHPUNIT_FILE: vendor/integer-net/magento2-shippingpreselection/.github/workflows/phpunit9-unit.xml
 

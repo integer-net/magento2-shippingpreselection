@@ -4,6 +4,10 @@ jobs:
   unit-tests:
     name: Magento 2 Unit Tests
     runs-on: ubuntu-latest
+    env:
+      REPOSITORY_URL: https://repo.magento.com/
+      MAGENTO_MARKETPLACE_USERNAME: ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }}
+      MAGENTO_MARKETPLACE_PASSWORD: ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
       - uses: docker://yireo/github-actions-magento-unit-tests:7.4

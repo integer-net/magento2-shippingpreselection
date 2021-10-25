@@ -1,0 +1,1 @@
+sed -i -e 's/"psr-4":/"classmap": ["tests\/"], "psr-4":/' composer.json

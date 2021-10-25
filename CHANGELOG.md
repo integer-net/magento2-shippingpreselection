@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.3] - 2021-10-25
 ### Changed
 - Removed hidden dependency to Hyvä
+- Migrated from Travis CI to Github Actions
+### Added
+- Tests
 ## [0.0.1] - 2021-10-01
 ### Added
 - Services to set and unset mock data

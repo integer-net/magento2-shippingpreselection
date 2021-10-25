@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-// phpcs:disable Generic.Files.LineLength.TooLong
-
 namespace IntegerNet\ShippingPreselection\Service;
 
 use Magento\Customer\Api\Data\AddressInterface;
@@ -36,6 +34,17 @@ class AddressSetMockdata
         $address->setTelephone($address->getTelephone() ?: $prefill);
         $address->setRegionId($address->getRegionId() ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_REGION_ID, 'store'));
         $address->setCountryId($address->getData('country_id') ?: $this->storeConfig->getValue(self::CONFIG_PATH_DEFAULT_COUNTRY_ID, 'store'));
-        $address->setStreet((is_array($address->getStreet()) && count($address->getStreet()) && $address->getStreet()[0] !== '') || is_string($address->getStreet()) && strlen($address->getStreet()) ? $address->getStreet() : [$prefill]);
+        $address->setStreet($this->mockStreet($address, $prefill));
+    }
+
+    private function mockStreet(Address $address, $prefill): array
+    {
+        if (is_array($address->getStreet()) && count($address->getStreet()) && $address->getStreet()[0] !== '') {
+            return $address->getStreet();
+        }
+        if (is_string($address->getStreet()) && $address->getStreet() !== '') {
+            return $address->getStreet();
+        }
+        return [$prefill];
     }
 }

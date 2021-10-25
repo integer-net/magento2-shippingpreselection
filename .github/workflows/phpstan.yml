@@ -22,3 +22,5 @@ jobs:
           # A possible workaround is to modify the root composer autoload section in a preinstall script:
           #
           magento_preinstall_script: .github/autoload-tests.sh
+        env:
+          INPUT_MAGENTO_PRE_INSTALL_SCRIPT: .github/autoload-tests.sh

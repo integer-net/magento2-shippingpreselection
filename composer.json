@@ -27,6 +27,10 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "github",
+            "url": "git@github.com:bartoszkubicki/magento2-unit-tests-doubles.git"
         }
     ],
     "require": {

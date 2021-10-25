@@ -14,4 +14,4 @@ jobs:
       - uses: extdn/github-actions-m2/magento-phpstan@master
         with:
           composer_name: integer-net/magento2-shippingpreselection
-          module_source: src
+

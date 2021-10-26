@@ -1,0 +1,1 @@
+sed -i -e 's/"psr-4":/"classmap": ["vendor\/integer-net\/magento2-shippingpreselection\/tests\/"], "psr-4":/' composer.json

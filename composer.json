@@ -27,11 +27,19 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "github",
+            "url": "git@github.com:bartoszkubicki/magento2-unit-tests-doubles.git"
         }
     ],
     "require": {
         "php": "~7.3||~7.4",
-        "magento/framework": "^103.0.0"
+        "magento/framework": "^103.0.0",
+        "magento/module-quote": "^101.2",
+        "magento/module-customer": "^103.0",
+        "bkubicki/magento2-unit-tests-doubles": "^1.2.0"
+
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -40,7 +48,8 @@
         "phpro/grumphp": "^v0.21.0",
         "phpstan/phpstan": "^0.12.0",
         "squizlabs/php_codesniffer": "^3.5",
-        "magento/magento-coding-standard": "@dev"
+        "magento/magento-coding-standard": "@dev",
+        "bkubicki/magento2-unit-tests-doubles": "^1.2.0"
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,0 +1,21 @@
+name: ExtDN M2 Unit Tests
+on: [push]
+jobs:
+  unit-tests:
+    name: Magento 2 Unit Tests
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY_URL: https://repo.magento.com/
+      MAGENTO_MARKETPLACE_USERNAME: ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }}
+      MAGENTO_MARKETPLACE_PASSWORD: ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://yireo/github-actions-magento-unit-tests:7.4
+        with:
+          # for unit tests, the path is not prefixed with GITHUB_WORKSPACE like for integration tests
+          phpunit_file: vendor/integer-net/magento2-shippingpreselection/.github/phpunit9-unit.xml
+        env:
+          MAGENTO_VERSION: '2.4.3'
+          MODULE_NAME: IntegerNet_ShippingPreselection
+          COMPOSER_NAME: integer-net/magento2-shippingpreselection
+

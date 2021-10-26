@@ -1,9 +1,9 @@
 name: ExtDN M2 Coding Standard
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+on: []
+#  push:
+#    branches:
+#      - master
+#  pull_request:
 
 jobs:
   static:

@@ -28,5 +28,13 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
     - name: Run test suite
       run: vendor/bin/phpunit tests/unit
+
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: var/test-results/*.xml
+

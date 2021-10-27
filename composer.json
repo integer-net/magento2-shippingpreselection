@@ -51,7 +51,7 @@
     },
     "scripts": {
         "test": [
-            "vendor/bin/phpunit tests/unit"
+            "vendor/bin/phpunit tests/unit --log-junit=var/test-results/unit.xml"
         ],
         "post-install-cmd": [
             "vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"

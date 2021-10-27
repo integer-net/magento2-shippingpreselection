@@ -48,4 +48,7 @@
         <listener class="Magento\TestFramework\Event\PhpUnit"/>
         <listener class="Magento\TestFramework\ErrorLog\Listener"/>
     </listeners>
+    <logging>
+        <junit outputFile="../../../var/test-results/integration.xml"/>
+    </logging>
 </phpunit>

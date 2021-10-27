@@ -9,11 +9,20 @@ on:
 jobs:
   phpstan:
 
-    name: PHPStan
+    name: PHPStan Static Analysis
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
@@ -22,16 +31,12 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-      - name: Composer install
-        uses: php-actions/composer@v6
-        with:
-          php_version: 7.4
 
-      - name: PHPStan Static Analysis
-        uses: php-actions/phpstan@v3
-        with:
-          php_version: 7.4
-          configuration: phpstan.neon
+      - name: Install dependencies
+        run: composer global config http-basic.repo.magento.com ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }} ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }} && composer install --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan
 
   unit-tests:
 
@@ -47,9 +52,6 @@ jobs:
           php-version: '7.4'
           extensions: mbstring, intl
           coverage: xdebug
-
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
 
       - name: Cache Composer packages
         id: composer-cache

@@ -49,9 +49,10 @@
         <listener class="Magento\TestFramework\ErrorLog\Listener"/>
     </listeners>
     <logging>
-        <log type="junit" target="../../../var/test-results/integration.xml"/>
+        <!-- need to specify absolute path to mounted directory, because Magento is installed in /tmp/m2 -->
+        <log type="junit" target="/github/workspace/var/test-results/integration.xml"/>
         <!-- for phpunit 9.5 change to:
-        <junit outputFile="../../../var/test-results/integration.xml"/>
+        <junit outputFile="/github/workspace/var/test-results/integration.xml"/>
         -->
     </logging>
 </phpunit>

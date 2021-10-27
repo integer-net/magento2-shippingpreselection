@@ -109,8 +109,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Integration Test Results
-          # /tmp/m2 is $MAGENTO_ROOT in integration test action
-          path: /tmp/m2/var/test-results/integration.xml
+          path: var/test-results/integration.xml
 
   phpmd:
     name: Magento 2 Mess Detector

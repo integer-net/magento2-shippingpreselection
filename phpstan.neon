@@ -3,6 +3,8 @@ parameters:
     paths:
         - src
         - tests
+    ignoreErrors:
+        - '#(class|type) Magento\\TestFramework#i'
     bootstrapFiles:
         - vendor/bitexpert/phpstan-magento/autoload.php
     magento:

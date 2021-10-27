@@ -27,7 +27,7 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer global config http-basic.repo.magento.com ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }} ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }} && composer install --prefer-dist --no-progress
 
     - name: Run test suite
       run: vendor/bin/phpunit tests/unit

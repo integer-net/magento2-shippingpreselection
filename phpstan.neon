@@ -3,8 +3,7 @@ parameters:
     paths:
         - src
         - tests
-    parameters:
-        bootstrapFiles:
-            - vendor/bitexpert/phpstan-magento/autoload.php
-    includes:
-        - vendor/bitexpert/phpstan-magento/extension.neon
+    bootstrapFiles:
+        - vendor/bitexpert/phpstan-magento/autoload.php
+includes:
+    - vendor/bitexpert/phpstan-magento/extension.neon

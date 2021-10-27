@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.1/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.2/phpunit.xsd"
          colors="true"
          columns="max"
          beStrictAboutTestsThatDoNotTestAnything="false"
@@ -49,6 +49,9 @@
         <listener class="Magento\TestFramework\ErrorLog\Listener"/>
     </listeners>
     <logging>
+        <log type="junit" target="../../../var/test-results/integration.xml"/>
+        <!-- for phpunit 9.5 change to:
         <junit outputFile="../../../var/test-results/integration.xml"/>
+        -->
     </logging>
 </phpunit>

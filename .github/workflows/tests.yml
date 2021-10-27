@@ -14,7 +14,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Composer install
+        uses: php-actions/composer@v6
+        with:
+          php_version: 7.4
 
       - name: PHPStan Static Analysis
         uses: php-actions/phpstan@v3

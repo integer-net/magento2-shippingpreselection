@@ -5,5 +5,8 @@ parameters:
         - tests
     bootstrapFiles:
         - vendor/bitexpert/phpstan-magento/autoload.php
+    magento:
+        # usually not recommended to disable ;-)
+        checkServiceContracts: false
 includes:
     - vendor/bitexpert/phpstan-magento/extension.neon

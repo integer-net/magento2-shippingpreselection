@@ -1,9 +1,8 @@
 parameters:
-    level: 6
+    level: 1
     paths:
         - src
         - tests
     ignoreErrors:
         - '#(class|type) Magento\\TestFramework#i'
         - '#(class|type) Magento\\\S*Factory#i'
-        - '#(method) Magento\\Framework\\Api\\ExtensionAttributesInterface#i'

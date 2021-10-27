@@ -36,7 +36,7 @@ jobs:
         run: composer global config http-basic.repo.magento.com ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }} ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }} && composer install --prefer-dist --no-progress
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan
+        run: vendor/bin/phpstan --no-progress
 
   unit-tests:
 

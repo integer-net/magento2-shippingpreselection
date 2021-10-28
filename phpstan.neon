@@ -1,9 +1,14 @@
 parameters:
-    level: 6
+    level: 1
     paths:
         - src
         - tests
     ignoreErrors:
         - '#(class|type) Magento\\TestFramework#i'
-        - '#(class|type) Magento\\\S*Factory#i'
-        - '#(method) Magento\\Framework\\Api\\ExtensionAttributesInterface#i'
+    bootstrapFiles:
+        - vendor/bitexpert/phpstan-magento/autoload.php
+    magento:
+        # usually not recommended to disable ;-)
+        checkServiceContracts: false
+includes:
+    - vendor/bitexpert/phpstan-magento/extension.neon

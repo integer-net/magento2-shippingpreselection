@@ -5,6 +5,6 @@
             <plugin name="integernet_shippingpreselection_preselectshippingmethod"
                     type="IntegerNet\ShippingPreselection\Plugin\PreselectShipping" sortOrder="20"/>
             <plugin name="integernet_shippingpreselection_resetshippingaddress"
-                    type="IntegerNet\ShippingPreselection\Plugin\UnselectShipping" sortOrder="30"/>
+                    type="IntegerNet\ShippingPreselection\Plugin\DeselectShipping" sortOrder="30"/>
         </type>
 </config>

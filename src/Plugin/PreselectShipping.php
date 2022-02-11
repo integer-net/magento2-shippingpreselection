@@ -18,6 +18,7 @@ class PreselectShipping
     private AddressSetMockdata $addressSetMockData;
     private AddressResetConditions $addressReset;
     private ShippingAddressAssignment $addressAssignment;
+    private ?Quote $quote;
 
     public function __construct(
         ShippingMethodManagement $methodManagement,
@@ -36,44 +37,50 @@ class PreselectShipping
      */
     public function afterGetQuote(Session $subject, Quote $result): Quote
     {
-        if (!$this->isPreselectionAllowed($result)) {
-            return $result;
+        $this->quote = $result;
+        if (!$this->isPreselectionAllowed()) {
+            return $this->quote;
         }
-        $address = $result->getShippingAddress();
-        if ($this->shouldMockAddress($address)) {
-            $this->addressSetMockData->setMockDataOnAddress($address);
-            $this->addressAssignment->setAddress($result, $address);
-        }
-        $this->preselectShippingMethod($result);
-        return $result;
+        $this->preselectShippingAddress();
+        $this->preselectShippingMethod();
+        return $this->quote;
     }
     
     public function shouldMockAddress(Address $address): bool
     {
         return (true !== $address->validate());
     }
-    
-    public function preselectShippingMethod(Quote $quote): void
+
+    public function preselectShippingAddress(): void
     {
-        $quote->getShippingAddress()->requestShippingRates(); // load new rates
-        if (!$rate = $this->getCheapestShippingRate($quote)) {
+        $address = $this->quote->getShippingAddress();
+        if ($this->shouldMockAddress($address)) {
+            $this->addressSetMockData->setMockDataOnAddress($address);
+            $this->addressAssignment->setAddress($this->quote, $address);
+        }
+    }
+    
+    public function preselectShippingMethod(): void
+    {
+        $this->quote->getShippingAddress()->requestShippingRates(); // load new rates
+        if (!$rate = $this->getCheapestShippingRate()) {
             return;
         }
         try {
             $this->methodManagement->set(
-                $quote->getId(),
+                $this->quote->getId(),
                 $rate->getCarrier(),
                 $rate->getMethod()
             );
         } catch (\Exception $e) {
-            $quote->addErrorInfo('error', null, $e->getCode(), $e->getMessage());
+            $this->quote->addErrorInfo('error', null, $e->getCode(), $e->getMessage());
         }
     }
     
-    public function getCheapestShippingRate(Quote $quote): ?Rate
+    public function getCheapestShippingRate(): ?Rate
     {
         $selectedRate = null;
-        foreach ($this->getShippingRates($quote) as $rate) {
+        foreach ($this->getShippingRates() as $rate) {
             /** @var Rate $rate */
             if ($selectedRate === null || $rate->getPrice() < $selectedRate->getPrice()) {
                 $selectedRate = $rate;
@@ -82,16 +89,16 @@ class PreselectShipping
         return $selectedRate;
     }
     
-    public function getShippingRates(Quote $quote)
+    public function getShippingRates()
     {
-        return $quote->getShippingAddress()->getShippingRatesCollection();
+        return $this->quote->getShippingAddress()->getShippingRatesCollection();
     }
     
-    public function isPreselectionAllowed(Quote $quote): bool
+    public function isPreselectionAllowed(): bool
     {
         return $this->validateShippingResetConditions() &&
-            $this->validateQuoteConditions($quote) &&
-            $this->validateShippingConditions($quote);
+            $this->validateQuoteConditions() &&
+            $this->validateShippingConditions();
     }
     
     public function validateShippingResetConditions(): bool
@@ -100,14 +107,14 @@ class PreselectShipping
             !$this->addressReset->isAddressIgnoreRequest();
     }
     
-    public function validateQuoteConditions(Quote $quote): bool
+    public function validateQuoteConditions(): bool
     {
-        return !$quote->getIsVirtual() && $quote->getItemsCount();
+        return !$this->quote->getIsVirtual() && $this->quote->getItemsCount();
     }
     
-    public function validateShippingConditions(Quote $quote): bool
+    public function validateShippingConditions(): bool
     {
-        $address = $quote->getShippingAddress();
+        $address = $this->quote->getShippingAddress();
         $shippingIsFine = $address->validate() && !empty($address->getShippingMethod());
         return !$shippingIsFine;
     }

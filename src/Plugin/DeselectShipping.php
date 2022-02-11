@@ -11,12 +11,13 @@ use Magento\Quote\Model\ShippingAddressAssignment;
 use IntegerNet\ShippingPreselection\Service\AddressUnsetMockdata;
 use IntegerNet\ShippingPreselection\Service\AddressResetConditions;
 
-class UnselectShipping
+class DeselectShipping
 {
     private AddressUnsetMockdata $addressUnsetMockData;
     private AddressResetConditions $addressReset;
     private ShippingAddressAssignment $addressAssignment;
     private AddressFactory $addressFactory;
+    private ?Quote $quote;
 
     public function __construct(
         AddressUnsetMockdata $addressUnsetMockdata,
@@ -35,30 +36,38 @@ class UnselectShipping
      */
     public function afterGetQuote(Session $subject, Quote $result): Quote
     {
-        $isResetRequest = $this->addressReset->isAddressResetRequest();
-        $quoteIsValid = !$result->getIsVirtual() && $result->getItemsCount();
-        if (!$isResetRequest || !$quoteIsValid) {
-            return $result;
+        $this->quote = $result;
+        if (!$this->isDeselectionAllowed()) {
+            return $this->quote;
         }
-        
-        $address = $result->getShippingAddress();
+        $address = $this->quote->getShippingAddress();
         if ($this->addressUnsetMockData->isMockedAddress($address)) {
-            $this->addressAssignment->setAddress($result, $this->getNewShippingAddress(), true); // deletion included
+            $this->addressAssignment->setAddress($this->quote, $this->getNewAddress(), true);
         } else {
             $this->addressUnsetMockData->checkForEmptyAddressFields($address);
             $this->unsetShippingMethod($address);
-            $this->addressAssignment->setAddress($result, $address);
+            $this->addressAssignment->setAddress($this->quote, $address);
         }
-        return $result;
+        return $this->quote;
+    }
+
+    public function isDeselectionAllowed(): bool
+    {
+        $isResetRequest = $this->addressReset->isAddressResetRequest();
+        $quoteIsValid = !$this->quote->getIsVirtual() && $this->quote->getItemsCount();
+        return $isResetRequest && $quoteIsValid;
     }
     
-    public function getNewShippingAddress(): Address
+    public function getNewAddress(): Address
     {
         return $this->addressFactory->create()->setAddressType(Address::TYPE_SHIPPING);
     }
     
     public function unsetShippingMethod(Address $address): void
     {
-        $address->setShippingAmount(0)->setBaseShippingAmount(0)->setShippingMethod('')->setShippingDescription('');
+        $address->setShippingAmount(0)
+            ->setBaseShippingAmount(0)
+            ->setShippingMethod('')
+            ->setShippingDescription('');
     }
 }

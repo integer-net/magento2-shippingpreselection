@@ -22,11 +22,11 @@ class PreselectShipping
     public function __construct(
         ShippingMethodManagement $methodManagement,
         AddressResetConditions $addressReset,
-        AddressSetMockdata $addressSetMockdata,
+        AddressSetMockdata $addressSetMockData,
         ShippingAddressAssignment $addressAssignment
     ) {
         $this->methodManagement = $methodManagement;
-        $this->addressSetMockData = $addressSetMockdata;
+        $this->addressSetMockData = $addressSetMockData;
         $this->addressReset = $addressReset;
         $this->addressAssignment = $addressAssignment;
     }

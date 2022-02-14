@@ -5,8 +5,8 @@
         <integernet>
             <shipping_preselection>
                 <mock_data>ShippingPreselection</mock_data>
-                <mock_unset_urls><![CDATA[hyvaCheckout_checkout_index, hyvacheckout_checkout_index,checkout_checkout_index,checkout,checkout_index_index,payone_amazon_loadReview,payone_onepage_amazon,payone_onepage_debit,payone_onepage_placeOrder,payone_onepage_redirect,payone_onepage_returned,payone_onepage_review,payone_paypal_express,payone_paypal_returned]]></mock_unset_urls>
-                <mock_ignore_urls><![CDATA[customer_section_load]]></mock_ignore_urls>
+                <mock_unset_urls><![CDATA[hyvaCheckout_checkout_index, hyvacheckout_checkout_index,checkout_checkout_index,checkout,checkout_index_index,payone_amazon_loadReview,payone_onepage_amazon,payone_onepage_debit,payone_onepage_placeOrder,payone_onepage_redirect,payone_onepage_returned,payone_onepage_review,payone_paypal_express,payone_paypal_returned,paypal_express_start]]></mock_unset_urls>
+                <mock_ignore_urls><![CDATA[customer_section_load,paypal_express_review,paypal_express_edit,paypal_express_return,searchanise_async_index,amazon_pay_checkout_config,paypal_express_saveShippingMethod]]></mock_ignore_urls>
             </shipping_preselection>
         </integernet>
     </default>

@@ -7,6 +7,14 @@
 [![Maintainability][ico-maintainability]][link-maintainability]
 </div>
 
+# ⚠️  THIS PACKAGE IS NO LONGER MAINTAINED
+
+It was provided open source "as is" on demand, but since we do not even use this approach in our own projects anymore, we won't make any effort to keep this up to date.
+
+Do you need help with implementing shipping estimation on the cart page for the default country? Contact info@integer-net.de with your inquiry.
+
+---
+
 # IntegerNet ShippingPreselection (AutoShipping)
 
 This module preselects the cheapest shipping method by filling shipping address with mock data and default country/region/postcode of the current storeview.

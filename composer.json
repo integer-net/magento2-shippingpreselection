@@ -1,5 +1,6 @@
 {
     "name": "integer-net/magento2-shippingpreselection",
+    "abandoned": true,
     "description": "This module provides methods to preselect a shipping method upon quote creation of the customer. It fetches all available countries from Magento Config and will preselect the default country/region/postcode of the current storeview.",
     "type": "magento2-module",
     "license": "MIT",
@@ -60,5 +61,11 @@
         "post-update-cmd": [
             "vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/magento-composer-installer": true,
+            "phpro/grumphp": true
+        }
     }
 }
